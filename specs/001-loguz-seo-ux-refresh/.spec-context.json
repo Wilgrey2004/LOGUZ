@@ -1,0 +1,10 @@
+{
+  "workflow": "speckit",
+  "specName": "001-loguz-seo-ux-refresh",
+  "branch": "001-loguz-seo-ux-refresh",
+  "selectedAt": "2026-04-29T14:02:59.901Z",
+  "currentStep": "specify",
+  "status": "draft",
+  "stepHistory": {},
+  "transitions": []
+}
