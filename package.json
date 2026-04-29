@@ -4,12 +4,14 @@
   "description": "Pagina web de prueba para La funerario Locus",
   "main": "index.js",
   "scripts": {
-    "deploy": "gh-pages -d ."
+    "sitemap": "node scripts/generate-sitemap.js",
+    "deploy": "npm run sitemap && gh-pages -d ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "animejs": "^4.3.6",
     "gh-pages": "^6.3.0",
     "logus": "file:",
     "sitemap": "^8.0.0"

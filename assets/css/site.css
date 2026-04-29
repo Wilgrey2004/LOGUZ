@@ -1,0 +1,1137 @@
+/* =========================================================
+   LOGUZ — site.css
+   Estilos globales. Consume tokens de tokens.css.
+   Mobile-first. Breakpoints: 320 375 428 768 1024 1440
+   ========================================================= */
+
+/* ── Reset & Base ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Underline animado para links en desktop */
+a.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-text-on-dark);
+  bottom: -2px;
+  left: 0;
+  transition: width var(--transition-base);
+}
+
+a.nav-link:hover::after,
+a.nav-link[aria-current="page"]::after {
+  width: 100%;
+}
+
+/* ── Cabecera superior (logo + tagline) ───────────────── */
+.MyTopHeader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+  background-color: var(--color-header-bg);
+  padding: var(--space-4) var(--space-6);
+  transition: background-color var(--transition-base);
+}
+
+.MyTopHeader .Mylogo {
+  width: 70px;
+  height: auto;
+}
+
+.TextMyLogo {
+  text-align: left;
+}
+
+.TextMyLogo h1 {
+  font-family: var(--font-display);
+  color: var(--boston-400);
+  font-size: var(--font-size-2xl);
+  letter-spacing: 0.05em;
+}
+
+.TextMyLogo p {
+  color: var(--boston-200);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+/* ── Navegación principal ─────────────────────────────── */
+.MyNabar {
+  width: 100%;
+  background-color: var(--color-nav-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  box-shadow: var(--shadow-md);
+  transition: background-color var(--transition-base);
+}
+
+.MyTitleContent {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.Titulo {
+  font-family: var(--font-display);
+  color: var(--boston-200);
+  font-size: var(--font-size-xl);
+  cursor: default;
+  animation: TituloAnimado 2s alternate ease infinite paused;
+}
+
+.Titulo:hover {
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Titulo {
+    animation: none;
+  }
+}
+
+@keyframes TituloAnimado {
+  0% {
+    transform: scale(1);
+    color: var(--boston-200);
+  }
+  50% {
+    transform: scale(1.1);
+    color: var(--boston-300);
+  }
+  100% {
+    transform: scale(1);
+    color: var(--boston-200);
+  }
+}
+
+/* Puntos decorativos animados */
+.ContenedorA {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.ContenedorA .MyBox {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--boston-300);
+  animation: Agrandar 0.5s ease-in-out infinite;
+}
+
+.ContenedorA .MyBox:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.ContenedorA .MyBox:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.ContenedorA .MyBox:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ContenedorA .MyBox {
+    animation: none;
+  }
+}
+
+@keyframes Agrandar {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* ── Menú desktop ─────────────────────────────────────── */
+.MyMenu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.MyList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.MyList li {
+  position: relative;
+}
+
+.MyList a {
+  font-size: var(--font-size-base);
+  color: var(--boston-200);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  min-height: var(--touch-target);
+  display: flex;
+  align-items: center;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.MyList a:hover,
+.MyList a[aria-current="page"] {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--boston-100);
+}
+
+/* Submenu desktop */
+.MySubmenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background-color: var(--boston-800);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-modal);
+  overflow: hidden;
+}
+
+.MyList li:hover .MySubmenu,
+.MyList li:focus-within .MySubmenu {
+  display: block;
+}
+
+.MySubmenu li {
+  border-left: 3px solid var(--boston-500);
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.MySubmenu li:hover {
+  background-color: var(--boston-700);
+  border-left-color: var(--boston-300);
+}
+
+.MySubmenu li a {
+  color: var(--boston-200);
+  font-size: var(--font-size-sm);
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  min-height: var(--touch-target);
+}
+
+.MySubmenu li a:hover {
+  color: var(--boston-100);
+  background-color: transparent;
+}
+
+/* ── Botón hamburger ──────────────────────────────────── */
+.MenuShow {
+  display: none;
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--boston-600);
+  border: none;
+  border-radius: var(--radius-pill);
+  color: var(--boston-100);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.MenuShow:hover,
+.MenuShow:focus-visible {
+  background-color: var(--boston-400);
+  outline: 2px solid var(--boston-300);
+  outline-offset: 2px;
+}
+
+/* ── Toggle de tema ───────────────────────────────────── */
+.ThemeToggle {
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+  padding: var(--space-2);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-pill);
+  color: var(--boston-100);
+  cursor: pointer;
+  font-size: var(--font-size-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.ThemeToggle:hover,
+.ThemeToggle:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  outline: 2px solid var(--boston-300);
+  outline-offset: 2px;
+}
+
+.ThemeToggle .icon-moon {
+  display: block;
+}
+.ThemeToggle .icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .ThemeToggle .icon-moon {
+  display: none;
+}
+[data-theme="dark"] .ThemeToggle .icon-sun {
+  display: block;
+}
+
+/* ── Modal menú mobile ────────────────────────────────── */
+.MyModal {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: var(--space-4);
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-xl) 0 var(--radius-xl) var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-4);
+  z-index: var(--z-modal);
+  min-width: 220px;
+  transition: opacity var(--transition-fast);
+}
+
+.MyModal.Activo {
+  display: block;
+  animation: fadeInDown 0.2s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .MyModal.Activo {
+    animation: none;
+  }
+}
+
+.MyListModal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.MyListModal a {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  padding: var(--space-2) var(--space-3);
+  min-height: var(--touch-target);
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.MyListModal a:hover {
+  background-color: var(--color-bg-alt);
+}
+
+.SubMenuShow {
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  background: none;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  min-height: var(--touch-target);
+  transition: background-color var(--transition-fast);
+}
+
+.SubMenuShow:hover,
+.SubMenuShow[aria-expanded="true"] {
+  background-color: var(--color-bg-alt);
+}
+
+.MySubmenuModal {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) 0 0 var(--space-4);
+}
+
+.MySubmenuModal.ActivoFlex {
+  display: flex;
+}
+
+.MySubmenuModal a {
+  font-size: var(--font-size-base);
+  color: var(--color-accent);
+  padding: var(--space-2) var(--space-3);
+  min-height: var(--touch-target);
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.MySubmenuModal a:hover {
+  background-color: var(--color-bg-alt);
+  transform: translateX(4px);
+}
+
+/* ── Main ─────────────────────────────────────────────── */
+.MyMain {
+  flex: 1;
+  padding: var(--space-4);
+  background-color: var(--color-bg);
+  width: 100%;
+  transition: background-color var(--transition-base);
+}
+
+/* ── Sección hero / principal ─────────────────────────── */
+.MySection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.namepage {
+  font-family: var(--font-display);
+  color: var(--color-accent);
+  text-align: center;
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-fast);
+}
+
+/* ── Galería de planes (cards) ────────────────────────── */
+.Galeria {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-5);
+  width: 100%;
+}
+
+.ImageCarrucel {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+  cursor: pointer;
+}
+
+.ImageCarrucel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(24, 37, 52, 0.85) 0%,
+    rgba(24, 37, 52, 0.1) 60%
+  );
+  z-index: 1;
+  transition: opacity var(--transition-base);
+}
+
+.ImageCarrucel:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.ImageCarrucel:nth-child(1) {
+  background-image: url("../../img/PlanSolucion.jpg");
+}
+.ImageCarrucel:nth-child(2) {
+  background-image: url("../../img/PlanTranuilidad.jpg");
+}
+.ImageCarrucel:nth-child(3) {
+  background-image: url("../../img/PlanSatisfaccion.jpg");
+}
+
+.ImageCarrucel a {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-4);
+  text-decoration: none;
+}
+
+.ImageCarrucel p {
+  color: var(--boston-50);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-fast);
+}
+
+.ImageCarrucel:hover p {
+  transform: translateY(-4px);
+}
+
+/* ── Misión / Visión / Valores ────────────────────────── */
+.MyMisionAndMyvision {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: var(--color-card-mision);
+  border-radius: var(--radius-xl) 0 var(--radius-xl) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  position: relative;
+  transition: background-color var(--transition-base);
+}
+
+.MyMisionAndMyvision > .MyBox {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--boston-500);
+}
+
+.MyMV {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.SubTitulo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-accent);
+}
+
+.SubTitulo h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+}
+
+.SubTitulo img {
+  width: 36px;
+  height: 36px;
+}
+
+.MyMision p,
+.MyVision p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: var(--font-size-base);
+}
+
+/* ── Sección info / reglas ────────────────────────────── */
+.MyInfo {
+  width: 100%;
+  max-width: 1100px;
+  background-color: var(--color-card-mision);
+  border-radius: var(--radius-xl) 0 var(--radius-xl) 0;
+  margin: var(--space-4) auto;
+  padding: var(--space-6);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  transition: background-color var(--transition-base);
+}
+
+.MyTitleAndImage {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.MyTitleAndImage .namepage {
+  font-size: var(--font-size-2xl);
+}
+
+.MyTitleAndImage img {
+  width: 40px;
+  height: 40px;
+}
+
+.MyInfo article {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.MyInfo article ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.MyText {
+  list-style: none;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-base);
+  color: var(--color-text-on-dark);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-lg) 0 var(--radius-lg) 0;
+  transition:
+    transform var(--transition-base),
+    background-color var(--transition-fast),
+    font-size var(--transition-fast);
+}
+
+.MyText:hover {
+  transform: translateY(-4px) scale(1.02);
+  background-color: var(--color-accent-hover);
+}
+
+/* ── Acerca de nosotros ───────────────────────────────── */
+.MyAbaut {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+/* ── Sección planes individual ────────────────────────── */
+.MySectionPlanes {
+  background-color: var(--color-card-mision);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-4);
+  border-radius: var(--radius-xl) 0 var(--radius-xl) 0;
+  transition: background-color var(--transition-base);
+}
+
+.logoPlan {
+  width: 100%;
+  max-width: 1000px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--radius-xl) 0 var(--radius-xl) 0;
+}
+
+.MyPlanInfo {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.MyNamePlan {
+  font-family: var(--font-display);
+  font-size: var(--font-size-3xl);
+  color: var(--color-accent);
+}
+
+.MyPlan ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.MyPlan li {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  list-style: none;
+}
+
+.MyPlan li:last-child {
+  border-bottom: none;
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.MyEspecial {
+  color: var(--color-accent);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-top: var(--space-2);
+}
+
+/* ── Botones ──────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  padding: var(--space-3) var(--space-6);
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--boston-400);
+  outline-offset: 3px;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Botón primario */
+.btn-primary {
+  background-color: var(--color-btn-primary);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-btn-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-btn-primary-hover);
+  border-color: var(--color-btn-primary-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Botón secundario */
+.btn-secondary {
+  background-color: var(--color-btn-secondary);
+  color: var(--color-btn-secondary-text);
+  border-color: var(--color-btn-secondary-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-alt);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Botón WhatsApp */
+.btn-whatsapp {
+  background-color: var(--wa-green);
+  color: #ffffff;
+  border-color: var(--wa-green);
+  font-size: var(--font-size-lg);
+  padding: var(--space-4) var(--space-8);
+}
+
+.btn-whatsapp:hover {
+  background-color: var(--wa-green-hover);
+  border-color: var(--wa-green-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  color: #ffffff;
+}
+
+.btn-whatsapp:active {
+  transform: translateY(0);
+}
+
+/* SVG icon dentro del botón */
+.btn-whatsapp .wa-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* Compatibilidad con botón adquirir existente */
+.MyButtonAdquirir {
+  min-height: var(--touch-target);
+  padding: var(--space-3) var(--space-6);
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-btn-primary);
+  color: var(--color-btn-primary-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.MyButtonAdquirir:hover {
+  background-color: var(--color-btn-primary-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── CTA WhatsApp — Secciones ─────────────────────────── */
+.wa-cta-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+}
+
+.wa-cta-section h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-primary);
+}
+
+.wa-cta-section p {
+  color: var(--color-text-muted);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.wa-fallback {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+.wa-fallback a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* ── Brand name (inner pages header) ─────────────────── */
+.brand-name {
+  font-family: var(--font-display);
+  color: var(--boston-400);
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+.MyFooter {
+  width: 100%;
+  margin-top: auto;
+  background-color: var(--color-footer-bg);
+  padding: var(--space-8) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  transition: background-color var(--transition-base);
+}
+
+.MyFooter .footer-wa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.MyFooter .footer-wa p {
+  color: var(--boston-200);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.MyRedes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.ContentMyRedesIcons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ContentMyRedesIcons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
+  border-radius: 50%;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.ContentMyRedesIcons a:hover {
+  transform: scale(1.15);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ContentMyRedesIcons a img {
+  width: 36px;
+  height: 36px;
+}
+
+.ImageTextRedes {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--boston-200);
+  font-size: var(--font-size-sm);
+}
+
+.ImageTextRedes img {
+  width: 24px;
+  height: 24px;
+}
+
+.MyCopy p {
+  color: var(--boston-200);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: var(--boston-300);
+  font-size: var(--font-size-sm);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--boston-100);
+}
+
+/* ── Accesibilidad: skip link ─────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: var(--space-2);
+  background: var(--boston-600);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  z-index: 9999;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: var(--space-4);
+}
+
+/* ── Clases utilitarias ───────────────────────────────── */
+.Activo {
+  display: block !important;
+}
+.ActivoFlex {
+  display: flex !important;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Breakpoint: 768px ────────────────────────────────── */
+@media screen and (min-width: 768px) {
+  .MyTopHeader .Mylogo {
+    width: 90px;
+  }
+  .TextMyLogo h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .MyMisionAndMyvision {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .MyPlan ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .logoPlan {
+    height: 280px;
+  }
+  .MyNamePlan {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+/* ── Breakpoint: 1024px ───────────────────────────────── */
+@media screen and (min-width: 1024px) {
+  .MyMain {
+    padding: var(--space-8);
+  }
+
+  .MyPlan ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .logoPlan {
+    height: 320px;
+  }
+  .MyAbaut {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* ── Breakpoint: max 1089px (mobile nav) ──────────────── */
+@media screen and (max-width: 1089px) {
+  .MenuShow {
+    display: flex;
+  }
+
+  .MyList {
+    display: none;
+  }
+
+  .MyTitleContent .ContenedorA {
+    display: none;
+  }
+
+  .Titulo {
+    font-size: var(--font-size-lg);
+  }
+
+  .MyNabar {
+    position: relative;
+  }
+}
+
+/* ── Breakpoint: min 1090px (desktop nav) ─────────────── */
+@media screen and (min-width: 1090px) {
+  .MenuShow {
+    display: none;
+  }
+  .MyModal {
+    display: none !important;
+  }
+}
+
+/* ── Animaciones de entrada (anime.js las complementa) ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,168 @@
+/* =========================================================
+   LOGUZ — Brand Design Tokens
+   Paleta boston + modo claro/oscuro + tipografia + espaciado
+   ========================================================= */
+
+:root {
+  /* Paleta base boston */
+  --boston-50: #f1f7fa;
+  --boston-100: #dcebf1;
+  --boston-200: #bcd7e5;
+  --boston-300: #8eb9d2;
+  --boston-400: #5792b7;
+  --boston-500: #3d779d;
+  --boston-600: #356185;
+  --boston-700: #31516d;
+  --boston-700-transparent: #31516d62;
+  --boston-800: #2f465b;
+  --boston-900: #2b3c4e;
+  --boston-950: #182534;
+
+  /* Acento whatsapp */
+  --wa-green: #25d366;
+  --wa-green-dark: #128c7e;
+  --wa-green-hover: #1da851;
+
+  /* Tokens semánticos — MODO CLARO (default) */
+  --color-bg: var(--boston-50);
+  --color-bg-alt: var(--boston-100);
+  --color-bg-card: #ffffff;
+  --color-surface: var(--boston-200);
+  --color-header-bg: var(--boston-700);
+  --color-nav-bg: var(--boston-700);
+  --color-footer-bg: var(--boston-600);
+  --color-text-primary: var(--boston-950);
+  --color-text-secondary: var(--boston-700);
+  --color-text-on-dark: var(--boston-50);
+  --color-text-muted: var(--boston-500);
+  --color-accent: var(--boston-500);
+  --color-accent-hover: var(--boston-600);
+  --color-link: var(--boston-500);
+  --color-link-hover: var(--boston-400);
+  --color-border: var(--boston-200);
+  --color-border-strong: var(--boston-400);
+  --color-shadow: var(--boston-700-transparent);
+  --color-card-mision: var(--boston-200);
+  --color-btn-primary: var(--boston-600);
+  --color-btn-primary-hover: var(--boston-500);
+  --color-btn-primary-text: var(--boston-50);
+  --color-btn-secondary: transparent;
+  --color-btn-secondary-border: var(--boston-500);
+  --color-btn-secondary-text: var(--boston-600);
+  --color-overlay: rgba(24, 37, 52, 0.6);
+
+  /* Tipografia */
+  --font-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
+  --font-body: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  /* Espaciado */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Bordes */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 9999px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(24, 37, 52, 0.12);
+  --shadow-md: 0 4px 12px rgba(24, 37, 52, 0.15);
+  --shadow-lg: 0 8px 24px rgba(24, 37, 52, 0.18);
+
+  /* Transiciones */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  /* Touch targets */
+  --touch-target: 44px;
+
+  /* Z-index */
+  --z-nav: 100;
+  --z-modal: 200;
+  --z-toast: 300;
+}
+
+/* =========================================================
+   MODO OSCURO — aplicado via data-theme="dark" en <html>
+   Con fallback a prefers-color-scheme
+   ========================================================= */
+
+[data-theme="dark"],
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: var(--boston-950);
+    --color-bg-alt: var(--boston-900);
+    --color-bg-card: var(--boston-800);
+    --color-surface: var(--boston-800);
+    --color-header-bg: var(--boston-950);
+    --color-nav-bg: var(--boston-950);
+    --color-footer-bg: var(--boston-900);
+    --color-text-primary: var(--boston-50);
+    --color-text-secondary: var(--boston-200);
+    --color-text-on-dark: var(--boston-50);
+    --color-text-muted: var(--boston-300);
+    --color-accent: var(--boston-400);
+    --color-accent-hover: var(--boston-300);
+    --color-link: var(--boston-300);
+    --color-link-hover: var(--boston-200);
+    --color-border: var(--boston-700);
+    --color-border-strong: var(--boston-500);
+    --color-shadow: rgba(0, 0, 0, 0.4);
+    --color-card-mision: var(--boston-800);
+    --color-btn-primary: var(--boston-500);
+    --color-btn-primary-hover: var(--boston-400);
+    --color-btn-primary-text: var(--boston-50);
+    --color-btn-secondary: transparent;
+    --color-btn-secondary-border: var(--boston-400);
+    --color-btn-secondary-text: var(--boston-300);
+    --color-overlay: rgba(0, 0, 0, 0.7);
+  }
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--boston-950);
+  --color-bg-alt: var(--boston-900);
+  --color-bg-card: var(--boston-800);
+  --color-surface: var(--boston-800);
+  --color-header-bg: var(--boston-950);
+  --color-nav-bg: var(--boston-950);
+  --color-footer-bg: var(--boston-900);
+  --color-text-primary: var(--boston-50);
+  --color-text-secondary: var(--boston-200);
+  --color-text-on-dark: var(--boston-50);
+  --color-text-muted: var(--boston-300);
+  --color-accent: var(--boston-400);
+  --color-accent-hover: var(--boston-300);
+  --color-link: var(--boston-300);
+  --color-link-hover: var(--boston-200);
+  --color-border: var(--boston-700);
+  --color-border-strong: var(--boston-500);
+  --color-shadow: rgba(0, 0, 0, 0.4);
+  --color-card-mision: var(--boston-800);
+  --color-btn-primary: var(--boston-500);
+  --color-btn-primary-hover: var(--boston-400);
+  --color-btn-primary-text: var(--boston-50);
+  --color-btn-secondary: transparent;
+  --color-btn-secondary-border: var(--boston-400);
+  --color-btn-secondary-text: var(--boston-300);
+  --color-overlay: rgba(0, 0, 0, 0.7);
+}
